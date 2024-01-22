@@ -10,7 +10,8 @@ export default function Favorito() {
 
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:5430')
+    // axios.get('http://127.0.0.1:5430')
+    axios.get("https://lista-tarefa.onrender.com")
       .then((res) => {
         console.log(res);
         setServices(res.data);

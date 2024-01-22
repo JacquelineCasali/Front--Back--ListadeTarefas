@@ -11,13 +11,15 @@ import { Link } from "react-router-dom";
 export default function Outras() {
   async function getTodos() {
     // axios banco de dados
-    const response = await axios.get("http://127.0.0.1:5430");
+    const response = await axios.get("https://lista-tarefa.onrender.com");
+   
+   // const response = await axios.get("http://127.0.0.1:5430");
     setServices(response.data);
     console.log(response.data);
   }
   // deletar
   async function deletetarefa(services) {
-    await axios.delete(`http://127.0.0.1:5430/${services.id}`);
+    await axios.delete(`https://lista-tarefa.onrender.com/${services.id}`);
     getTodos();
   }
   //  importando do banco

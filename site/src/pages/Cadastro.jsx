@@ -20,7 +20,7 @@ export default function Cadastrar() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`http://127.0.0.1:5430`, values)
+      .post(`https://lista-tarefa.onrender.com`, values)
       .then((res) => {
         console.log(res);
         navigate("/");

@@ -19,14 +19,14 @@ form label {
 
 .textarea {
 width: 90%;
-  margin: 10px 10px 0 20px;
+  margin: 0 0 0 20px;
   border: none;
   color: #50656E;
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
   height: 310px;
- 
+  padding: 5px 0 5px 15px;
 }
 
 /* botao */

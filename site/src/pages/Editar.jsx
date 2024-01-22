@@ -1,102 +1,71 @@
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import React, {  useState } from "react";
-import { Helmet, HelmetProvider } from "react-helmet-async";
-import "../styles/Favoritos.css"
-import "../styles/App.css"
 
-import { IoMdColorFill } from "react-icons/io";
-import { IoClose } from "react-icons/io5";
-import { RiSave3Fill } from "react-icons/ri";
-import {FiStar } from "react-icons/fi"
+function Editar() {
+  const { id } = useParams();
+  useEffect(() => {
+    // puxando dados do banco
+    //  banco de dados
+    axios
+      .get("https://lista-hesh.onrender.com/" + id)
+      .then((res) => {
+        console.log(res);
 
-import { Link,useNavigate } from "react-router-dom";
-import Hearder from "../components/Hearder"
-export default function Editar() {
+        setValues(res.data[0]);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   const [values, setValues] = useState({
-    titulo: "",
-    descricao: "",
-  }); 
+    name: "",
+    email: "",
+  });
+  //  editar
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
+  const handleUpdate = (e) => {
     e.preventDefault();
     axios
-      .post(`http://127.0.0.1:5430`, values)
+      .put("https://lista-hesh.onrender.com/edit/" + id, values)
       .then((res) => {
         console.log(res);
         navigate("/");
       })
       .catch((err) => console.log(err));
   };
- 
-  
-  //  busca 
+
   return (
-    <div   >
-        <Hearder />
-      <HelmetProvider>
-        <Helmet title="Cadastrar Pet" />
-      </HelmetProvider>
-   <h1>Cadastrar Tarefa</h1> 
-  <div className="lista-favorito">
-                <div className="favorito-tarefa" >
-                   
-                <form className="login-fomr" onSubmit={handleSubmit}>
-                <div className='superior'>
-                <label htmlFor="">Titulo:</label>
-                <input
-            className="input-padrao"
-            type="text"
-            onChange={(e) => {
-              setValues({ ...values, titulo: e.target.value });
-            }}
-            placeholder="Digite um titulo"
-            required
-          />
-                <a href="#favoritos" >
-                <FiStar style={{height:'18px', width:"20px", color:"#455A64"}}/>
-                </a> 
-       </div>
-       {/* <div className="nota"> */}
+    <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
+      <div className="w-50 bg-white rounded p-3">
+        <form onSubmit={handleUpdate}>
+          <h2>Editar Estudante</h2>
+          <div className="mb-2">
+            <label htmlFor="">Nome:</label>
 
-                <textarea
-            className="textarea"
-            type="text"
-            onChange={(e) => {
-              setValues({ ...values, descricao: e.target.value });
-            }}
-            placeholder="Digite uma Tarefa"
-            required
-      />
-      {/* </div> */}
-       
-           
-                {/* <p className='nota'> {services.descricao}</p> */}
-                
-               <div className='inferior'>     
-                <Link className='icone-x' to={'#favoritos'} >
-                <IoMdColorFill style={{height:'30px', width:"30px", marginRight:"250px", color:"#51646E"}}/>
-                </Link> 
-              
-              
-                <Link className='icone-x' to={'/'} >   
-                
-                <IoClose style={{height:'30px', width:"30px", color:"#51646E"}}/>
-                </Link> 
-               
-                
-                <button className="button"><RiSave3Fill className="icone-salvar"style={{height:'35px', width:"35px", color:"blue"}}/></button>
-              
-                </div>
-                </form>    
-               </div>
-            
+            <input
+              className="form-control"
+              type="text"
+              placeholder="Digite o nome"
+              //   monstrando na tela
+              value={values.name}
+              onChange={(e) => setValues({ ...values, name: e.target.value })}
+            />
+          </div>
+          <div className="mb-2">
+            <label htmlFor="">Email:</label>
+
+            <input
+              className="form-control"
+              type="email"
+              placeholder="Digite o Email"
+              value={values.email}
+              onChange={(e) => setValues({ ...values, email: e.target.value })}
+            />
+          </div>
+          <button className="btn btn-success">Editar</button>
+        </form>
+      </div>
     </div>
-
-
-
-     
-    </div> 
- 
-
   );
 }
+export default Editar;

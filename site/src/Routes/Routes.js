@@ -17,7 +17,7 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route exact path="/cadastro" element={<Cadastro />} />
-        <Route exact path="/edit/:id" element={<Editar />} />
+ <Route exact path="/edit/:id" element={<Editar />} /> 
     
       </Routes>
     
