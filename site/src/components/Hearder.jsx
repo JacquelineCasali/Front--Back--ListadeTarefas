@@ -15,10 +15,10 @@ export default function Navbar() {
       <img src={Nome} alt=''/>
 
       {/* barra de pesquisa */}
-    <p>Barra de pesquisa</p>    
+    {/* <p>Barra de pesquisa</p>     */}
  
       <Link className='icone-x' to={'/'} >   
-      <IoClose style={{ color:"#51646E"}}/>
+      <IoClose style={{height:'13px', width:"13px", color:"#51646E"}}/>
 
      </Link>
        {/* <img  src={icone}  alt="Logo"/></Link>

@@ -4,24 +4,29 @@ import React, { useEffect, useState } from "react";
 import "../styles/Favoritos.css"
 import { IoMdColorFill } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
-import { FaPencil } from "react-icons/fa6";
+import { FaPencil,FaBook } from "react-icons/fa6";
 import {FiStar } from "react-icons/fi"
 
 import { Link } from "react-router-dom";
 export default function Outras() {
+  async function getTodos() {
+    // axios banco de dados
+    const response = await axios.get("http://127.0.0.1:5430");
+    setServices(response.data);
+    console.log(response.data);
+  }
+  // deletar
+  async function deletetarefa(services) {
+    await axios.delete(`http://127.0.0.1:5430/${services.id}`);
+    getTodos();
+  }
+  //  importando do banco
   const [services, setServices] = useState([]);
-
-
+  // useEffect chama a função do banco
   useEffect(() => {
-    
-    // axios.get('http://localhost:7000/services/')
-    axios.get('http://127.0.0.1:5430')
-      .then((res) => {
-        console.log(res);
-        setServices(res.data);
-      })
-      .catch((err) => console.log(err));
+    getTodos();
   }, []);
+
 //  busca 
   return (
     <div  id="outras" >
@@ -42,16 +47,27 @@ export default function Outras() {
                 <p className='nota'> {services.descricao}</p>
                 
                <div className='inferior'>     
-                 <Link className='icone-x' to={'/editar'} >
+               <Link to={`/${services.id}`}>
+                        <FaBook
+                          color="black"
+                          size={17}
+                          cursor="pointer"
+                          className="icone"
+                        />
+                      </Link>
+              
+                      <Link to={`/edit/${services.id}`}>
                 <FaPencil style={{height:'17px', width:"17px", color:"#51646E"}}/>
                 </Link> 
                 <Link className='icone-x' to={'#favoritos'} >
                 <IoMdColorFill style={{height:'18px', width:"18px", marginRight:"250px", color:"#51646E"}}/>
                 </Link> 
-                <Link className='icone-x' to={'/'} >   
                 
-                <IoClose style={{height:'14px', width:"14px", color:"#51646E"}}/>
+                <Link onClick={() => deletetarefa(services)}>
+                <IoClose style={{height:'16px', width:"16px", color:"#51646E"}}/>
                 </Link> 
+               
+               
                 </div>
                
                </div>

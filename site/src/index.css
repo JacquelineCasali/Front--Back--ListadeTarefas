@@ -15,6 +15,15 @@ background:  #F0F2F5;
   margin: auto;
  
 }
+h1{
+  text-align: center;
+  margin: 10px 0 ;
+  color: #333333;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  margin-left: 10px;
+}
 h4{
   color: #464646;
   font-weight: 400;
@@ -39,12 +48,13 @@ p{
   margin-left:5px ;
 }
 
-/* @media screen and (max-width: 480px) {
-   h4{
-    
-     margin: 20px 0 5px 50px;
+    .icone-salvar:hover {
+      /* background-color: #1b223c; */
+      transition: 0.5s;
+       /* aumenta o botao em 40% */
+  transform: Scale(1.6);
     }
-  } */
+
 @media screen and (max-width:579px) {
   h4{
     font-size: 12px;

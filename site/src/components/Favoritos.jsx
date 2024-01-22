@@ -4,14 +4,12 @@ import { Link } from "react-router-dom";
 import "../styles/Favoritos.css"
 import { IoIosStar,IoMdColorFill } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
-import { FaPencil } from "react-icons/fa6";
+import { FaPencil,FaBook } from "react-icons/fa6";
 export default function Favorito() {
   const [services, setServices] = useState([]);
 
 
   useEffect(() => {
-    
-   
     axios.get('http://127.0.0.1:5430')
       .then((res) => {
         console.log(res);
@@ -39,7 +37,16 @@ export default function Favorito() {
                 <p className='nota'> {services.descricao}</p>
                 
                <div className='inferior'>     
-                 <Link className='icone-x' to={'/editar'} >
+               <Link to={`/${services.id}`}>
+                        <FaBook
+                          color="black"
+                          size={17}
+                          cursor="pointer"
+                          className="icone"
+                        />
+                      </Link>
+              
+                      <Link to={`/edit/${services.id}`}>
                 <FaPencil style={{height:'17px', width:"17px", color:"#51646E"}}/>
                 </Link> 
                 <Link className='icone-x' to={'#favoritos'} >

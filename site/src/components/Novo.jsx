@@ -10,7 +10,9 @@ export default function Novo() {
   return (
     <div >
       <HelmetProvider>
-      <Helmet title="Titulo" />
+      <Helmet
+      
+      title="Titulo" />
     </HelmetProvider>
      
       <div className="lista-tarefa">
@@ -24,7 +26,7 @@ export default function Novo() {
      </div>
      {/* <div className='meio'> */}
 
-     <Link style={{textDecoration:"none"}} to={'/cadastrar'} >
+     <Link style={{cursor:"pointer"}} to={'/cadastro'} >
      <p className='cria-nota'> Criar nota</p>
         </Link>
      {/* </div> */}

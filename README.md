@@ -2,9 +2,9 @@
 
 Este Projeto onde é possivel listar, visualizar, criar, editar, excluir tarefas .
 
- <!-- <p align="center">
-  <img src="./pet/public/2023-06-15_205112.jpg" width="600px">
-</p> -->
+ <p align="center">
+  <img src="./site/src/assets/image.png" width="600px">
+</p>
 
   <!-- <iframe width="560" height="315" src="./pet/public/Video_2023-06-15_210440.gif" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 
@@ -20,7 +20,7 @@ https://github.com/JacquelineCasali/Front--Back--ListadeTarefas
 
 ## FRONTEND
 
-1. `cd tarefa`
+1. `cd site`
 2. `npm install`
 3. `npm start`
 
@@ -41,7 +41,8 @@ https://github.com/JacquelineCasali/Front--Back--ListadeTarefas
 ## Bibliotecas Usadas
 
 ## FRONTEND
-
+- `Axios`
+- `React.js`
 
 
 ## BackEnd
@@ -51,3 +52,4 @@ https://github.com/JacquelineCasali/Front--Back--ListadeTarefas
 - `Node.js`
 - `cors `
 - `nodemon`
+

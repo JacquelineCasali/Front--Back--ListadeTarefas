@@ -4,7 +4,7 @@
 .lista-favorito{
   display: flex;
   flex-wrap: wrap;
-  gap:20px;
+  gap:25px;
   justify-content: center;
   }
 
