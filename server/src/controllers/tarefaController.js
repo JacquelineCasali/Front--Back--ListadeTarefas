@@ -6,7 +6,7 @@ const pool = new Pool({
 });
 
 const tarefaController = {
-  // listando os pets
+  // listando
   lista:
     ("/",
     async (req, res) => {
@@ -18,7 +18,7 @@ const tarefaController = {
       }
     }),
 
-  // listar um pet
+  // listar um 
   show:
     ("/:id",
     async (req, res) => {
@@ -50,7 +50,7 @@ const tarefaController = {
         );
         return res.status(200).send({ msg: "Tarefa cadastrada com sucesso " });
       } catch (err) {
-        return res.status(400).send({ msg: "Tarefa já cadastrado " });
+        return res.status(400).send({ msg: `Error ao cadastrar tarefa verifique se o ${titulo} ou ${descricao} já existe ` });
       }
     }),
 
@@ -63,12 +63,12 @@ const tarefaController = {
 
       try {
         await pool.query(
-          "UPDATE tarefa SET titulo=($1), descricao=($2) WHERE pets_id=($3) RETURNING * ",
+          "UPDATE tarefa SET titulo=($1), descricao=($2) WHERE id=($3) RETURNING * ",
           [titulo, descricao, id]
         );
         return res.status(200).send({ msg: "Tarefa atulizada com sucesso " });
       } catch (err) {
-        return res.status(400).send({ msg: "Tarefa já cadastrado " });
+        return res.status(400).send({ msg: "Error ao atualizar tarefa " });
       }
     }),
 

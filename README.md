@@ -20,15 +20,15 @@ https://github.com/JacquelineCasali/Front--Back--ListadeTarefas
 
 ## FRONTEND
 
-1. `$ cd tarefa`
-2. `$ npm install`
-3. `$ npm start`
+1. `cd tarefa`
+2. `npm install`
+3. `npm start`
 
 ## BackEnd
 
-`$ cd server`
-`$ npm install`
-`$ npm run dev`
+1. `cd server`
+2. `npm install`
+3. `npm run dev`
 
 ## BackEnd
 

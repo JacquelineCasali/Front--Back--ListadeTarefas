@@ -1,21 +1,25 @@
-const dbConfig = require("../config/database");
-const Sequelize = require("sequelize");
 
-const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-  host: dbConfig.HOST,
-  dialect: dbConfig.dialect,
+const { Pool } = require("pg");
+
+// coneção ao banco de dados
+const pool = new Pool({
+  connectionString: process.env.POSTGRES_URL,
+});
+const sequelize = new Sequelize(pool.DB, pool.USER, pool.PASSWORD, {
+  host: pool.HOST,
+  dialect: pool.dialect,
   operatorsAliases: false,
 
   pool: {
-    max: dbConfig.pool.max,
-    min: dbConfig.pool.min,
-    acquire: dbConfig.pool.acquire,
-    idle: dbConfig.pool.idle,
+    max: pool.pool.max,
+    min: pool.pool.min,
+    acquire: pool.pool.acquire,
+    idle: pool.pool.idle,
   },
 });
 
 const db = {};
-db.sequelize = sequelize;
+db.pool = sequelize;
 db.Sequelize = Sequelize;
 
 db.tarefas = require("./tarefas")(sequelize, Sequelize);

@@ -10,14 +10,18 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       // nao permite valor nulo allowNull:false,
       allowNull: false,
+      //obrigatorio
+      required:true,
+      UNIQUE:true,
     },
 
     descricao: {
       type: Sequelize.STRING,
       allowNull: false,
-     // UNIQUE
+      required:true,
+      UNIQUE:true,
     },
-    
+ 
   });
   return Tarefas;
 };
