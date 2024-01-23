@@ -34,7 +34,7 @@ export default function Cadastrar() {
     <div   >
         <Hearder />
       <HelmetProvider>
-        <Helmet title="Cadastrar Pet" />
+        <Helmet title="Cadastrar Tarefa" />
       </HelmetProvider>
    <h1>Cadastrar Tarefa</h1> 
   <div className="lista-favorito">

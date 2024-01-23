@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import {Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Helmet, HelmetProvider } from "react-helmet-async";
+import Hearder from "../components/Hearder"
+import {FiStar } from "react-icons/fi"
+import { IoMdColorFill } from "react-icons/io";
+import { IoClose } from "react-icons/io5";
+import { RiSave3Fill } from "react-icons/ri";
+
 
 function Editar() {
   const { id } = useParams();
@@ -8,7 +15,7 @@ function Editar() {
     // puxando dados do banco
     //  banco de dados
     axios
-      .get("https://lista-hesh.onrender.com/" + id)
+      .get("https://lista-tarefa.onrender.com/" + id)
       .then((res) => {
         console.log(res);
 
@@ -18,15 +25,15 @@ function Editar() {
   }, []);
 
   const [values, setValues] = useState({
-    name: "",
-    email: "",
+    titulo: "",
+    descricao: "",
   });
   //  editar
   const navigate = useNavigate();
   const handleUpdate = (e) => {
     e.preventDefault();
     axios
-      .put("https://lista-hesh.onrender.com/edit/" + id, values)
+      .put("https://lista-tarefa.onrender.com/" + id, values)
       .then((res) => {
         console.log(res);
         navigate("/");
@@ -35,35 +42,75 @@ function Editar() {
   };
 
   return (
-    <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
-      <div className="w-50 bg-white rounded p-3">
+    <div >
+             <Hearder />
+      <HelmetProvider>
+        <Helmet title="Editar Tarefa" />
+      </HelmetProvider>
+   <h1>Editar Tarefa</h1> 
+
+       <div className="lista-favorito">
+     <div className="favorito-tarefa" >
+
         <form onSubmit={handleUpdate}>
-          <h2>Editar Estudante</h2>
-          <div className="mb-2">
-            <label htmlFor="">Nome:</label>
+        
+        <div className='superior'>
+        <label htmlFor="">Titulo:</label>
 
             <input
-              className="form-control"
+               className="input-padrao"
               type="text"
               placeholder="Digite o nome"
               //   monstrando na tela
-              value={values.name}
-              onChange={(e) => setValues({ ...values, name: e.target.value })}
+              value={values.titulo}
+              onChange={(e) => setValues({ ...values, titulo: e.target.value })}
             />
+              <a href="#favoritos" >
+                <FiStar style={{height:'18px', width:"20px", color:"#455A64"}}/>
+                </a> 
           </div>
-          <div className="mb-2">
-            <label htmlFor="">Email:</label>
+          
 
-            <input
-              className="form-control"
-              type="email"
+            <textarea
+              className="textarea"
+              type="text"
               placeholder="Digite o Email"
-              value={values.email}
-              onChange={(e) => setValues({ ...values, email: e.target.value })}
+              value={values.descricao}
+              onChange={(e) => setValues({ ...values, descricao: e.target.value })}
             />
-          </div>
-          <button className="btn btn-success">Editar</button>
+     
+     <div className='inferior'>  
+     <Link className='icone-x' to={'#favoritos'} >
+                <IoMdColorFill 
+                    size={30}
+                    //  cursor="pointer"
+                     color="#51646E"
+                     
+                style={{marginRight:"220px" }}/>
+                </Link> 
+              
+              
+                <Link  to={'/'} >   
+                
+                <IoClose 
+                 size={30}
+                //  cursor="pointer"
+                 color="#51646E"
+               />
+                </Link> 
+     <button className="button"><RiSave3Fill
+      className="icone-salvar"
+      size={35}
+      cursor="pointer"
+      color="blue"
+     /></button>
+
+     </div>
+     
+     
+     
         </form>
+      </div>
       </div>
     </div>
   );

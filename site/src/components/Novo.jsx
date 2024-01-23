@@ -12,7 +12,7 @@ export default function Novo() {
       <HelmetProvider>
       <Helmet
       
-      title="Titulo" />
+      title="Lista de Tarefas" />
     </HelmetProvider>
      
       <div className="lista-tarefa">
